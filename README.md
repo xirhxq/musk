@@ -2,6 +2,8 @@
 
 A repository of running multi-quadrotor simulations in Gazebo with PX4 inside Docker container.
 
+![example](assets/example.png)
+
 ## Requirements
 
 * Docker
