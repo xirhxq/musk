@@ -5,7 +5,7 @@ TAG="latest"
 CONTAINER_NAME="px4_noetic_dev"
 USER="tii_dev"
 
-script_dir=$(cd "$(dirname "$0")" && pwd)
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 ros_ws=$script_dir/../guidance/ros_ws
 echo "ROS workspace: $ros_ws"
 
