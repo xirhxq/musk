@@ -77,8 +77,8 @@ RUN cd ${PX4_HOME} && \
 RUN apt-get install -y tmuxinator
 RUN apt-get install -y python3-catkin-tools
 
-RUN useradd -m tii_dev && \
-echo "tii_dev ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN useradd -m developer && \
+echo "developer ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 RUN apt-get update && \
     apt-get install -y geographiclib-tools && \
@@ -86,14 +86,14 @@ RUN apt-get update && \
     geographiclib-get-gravity egm96 && \
     geographiclib-get-magnetic emm2015
 
-USER tii_dev
-WORKDIR /home/tii_dev
+USER developer
+WORKDIR /home/developer
 
 ENV DONT_RUN=0
 
 RUN echo '#!/bin/bash' > /tmp/setup_environment.sh && \
     echo 'source /opt/ros/noetic/setup.bash' >> /tmp/setup_environment.sh && \
-    echo 'source /home/tii_dev/.bashrc' >> /tmp/setup_environment.sh && \
+    echo 'source /home/developer/.bashrc' >> /tmp/setup_environment.sh && \
     echo 'source /app/guidance/ros_ws/devel/setup.bash' >> /tmp/setup_environment.sh && \
     echo 'source ${PX4_HOME}/Tools/simulation/gazebo-classic/setup_gazebo.bash ${PX4_HOME} ${PX4_HOME}/build/px4_sitl_default' >> /tmp/setup_environment.sh && \
     echo 'export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:${PX4_HOME}' >> /tmp/setup_environment.sh && \
@@ -111,6 +111,6 @@ RUN python3 -m pip install --upgrade pip && \
 
 SHELL ["/bin/bash", "-c"]
 
-USER tii_dev
+USER developer
 
 CMD ["/bin/bash", "-c", "source /tmp/setup_environment.sh && /bin/bash"]

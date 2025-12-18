@@ -3,7 +3,7 @@
 IMAGE_NAME="xirhxq/px4-noetic-gazebo"
 TAG="latest"
 CONTAINER_NAME="px4_noetic_dev"
-USER="tii_dev"
+USER="developer"
 
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 ros_ws=$script_dir/../guidance/ros_ws
